@@ -1,10 +1,12 @@
 require_relative 'primitive'
-require 'mixlib/shellout'
 
 # This primitive takes a block, a mixlib::shellout or a command (as a string)
 # it will execute the command/block/shellout until it returns true (exits with 0 for commands). Any other value or StandardException will be interpretation as a failure of the condition
 module Choregraphie
   class WaitUntil < Primitive
+
+    include Chef::Mixin::ShellOut
+
     # Two ways to create this primitive:
     # - "condition, options" where condition is either a shellout or a string
     # - "options, block"
